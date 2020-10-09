@@ -4,16 +4,15 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static int count = -1;
-
     public static void main(String[] args) {
         // Shape width
-        int w = readingShapeWidth("(odd number greater than 3) --> ");
+        int w = readShapeWidth("(odd number greater than 3) --> ");
 
-        drawingStars(w);
+        drawFigure(w);
     }
 
-    static boolean checkingForEmptyElement(int i, int j, int w) {
+    static boolean checkForEmptyElement(int i, int j, int w, int count) {
+
         if (i > 1) {
             if (j >= Math.round(w / 2) + 1 - count && j <= Math.round(w / 2) + 1 + count) {
                 return false;
@@ -22,13 +21,13 @@ public class Main {
         return true;
     }
 
-    static void drawingStars(int w) {
-        boolean print = true;
+    static void drawFigure(int w) {
+        int count = -1;
 
         if (w >= 3 && w % 2 == 1) {
             for (int i = 1; i <= w - i + 1; i++) {
                 for (int j = 1; j <= w; j++) {
-                    print = checkingForEmptyElement(i, j, w);
+                    boolean print = checkForEmptyElement(i, j, w, count);
                     if (print) {
                         System.out.print("*");
                     } else {
@@ -39,11 +38,11 @@ public class Main {
                 System.out.println();
             }
         } else {
-            System.out.print("None");
+            System.out.print("You entered a variable value that does not meet the requirements!");
         }
     }
 
-    static int readingShapeWidth(String name) {
+    static int readShapeWidth(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Enter width %s", name);
         return scanner.nextInt();
