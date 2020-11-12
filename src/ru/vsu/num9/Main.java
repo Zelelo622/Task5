@@ -6,12 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
         // Shape width
-        int w = readShapeWidth("(odd number greater than 3) --> ");
+        int w = readInteger("(odd number greater than 3) --> ");
 
         printFigure(w);
     }
 
-    static boolean checkForEmptyElement(int i, int j, int w, int count) {
+    private static boolean checkForEmptyElement(int i, int j, int w, int count) {
         if (i > 1) {
             if (j >= Math.round(w / 2) + 1 - count && j <= Math.round(w / 2) + 1 + count) {
                 return false;
@@ -20,7 +20,7 @@ public class Main {
         return true;
     }
 
-    static void printFigure(int w) {
+    private static void printFigure(int w) {
         int count = -1;
 
         if (w >= 3 && w % 2 == 1) {
@@ -41,7 +41,7 @@ public class Main {
         }
     }
 
-    static int readShapeWidth(String name) {
+    private static int readInteger(String name) {
         Scanner scanner = new Scanner(System.in);
         System.out.printf("Enter width %s", name);
         return scanner.nextInt();
